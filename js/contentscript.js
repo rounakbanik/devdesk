@@ -29,16 +29,20 @@ function HTMLParse(event) {
 					$(".img-container img").css("margin-top", event.margin);
         		}).fadeIn(400);*/
 			console.log(xhr);
-			content = "";
+			content = "<h3 class='text-center'><a href='https://news.ycombinator.com/'>News</a></h3><ol>";
 			$(info_obj).find(".storylink").each(function(index) {
 				var link = $(this).attr("href");
 				var title = $(this).html();
 				content = content + "<li><a href='" + link + "'>" + title + "</a></li>";
 				return index < 7;
 			});
-			console.log(content);
-			$(".news ol").append(content);
-
+			//console.log(content);
+			//$(".news ol").append(content);
+			content = content + "</ol><br><div class='other text-center'><a href='http://www.theverge.com/''><img src='images/verge.ico'></a>&nbsp;<a href='http://mashable.com/'><img src='images/mashable.png'></a>&nbsp;<a href='http://slashdot.org/'><img src='images/slashdot.png'></a>&nbsp;<a href='https://techcrunch.com/'><img src='images/techcrunch.ico'></a></div>";
+			$(".news").fadeOut(400, function() {
+				$(".news").css("background-color", "#eee");
+				$(".news").append(content);
+			}).fadeIn(400);
 		}
 			
 	}

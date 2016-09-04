@@ -12,7 +12,7 @@ body {
 }
 
 .news {
-	background-color: #eee;
+	/*background-color: #eee;*/
 	padding: 10px;
 	border-radius: 15px;
 }
@@ -33,4 +33,19 @@ a:hover {
 .other img {
 	height: 35px;
 	width: 35px;
+}
+
+.link-menu {
+	background-color: #eee;
+	border-radius: 15px;
+	padding: 15px;
+}
+
+.heading {
+	font-size: 24px;
+}
+
+.link-menu div a img {
+	width: 48px;
+	height: 48px;
 }
