@@ -1,0 +1,32 @@
+{
+	"manifest_version": 2,
+	"name": "Developer's Desktop",
+	"version": "1.0.0",
+	"description": "A productivity extension for developers.",
+	"author": "Rounak Banik",
+	"icons": {
+		"16": "images/icon.png",
+		"32": "images/icon.png",
+		"64": "images/icon.png",
+		"128": "images/icon.png"
+	},
+	"chrome_url_overrides": {
+		"newtab": "devdesk.html"
+	},
+	"browser_action": {
+		"default_title": "Developer's Desktop",
+		"default_icon": "images/icon.png"
+	},
+	"permissions": [
+		"topSites",
+		"tabs",
+		"activeTab",
+		"<all_urls>",
+		"https://www.xkcd.com/info.0.json",
+		"https://news.ycombinator.com/"
+	],
+
+	"content_security_policy": "script-src 'self' https://xkcd.com/info.0.json https://news.ycombinator.com/; object-src 'self'"
+
+
+}

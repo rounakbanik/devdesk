@@ -1,0 +1,36 @@
+body {
+	font-family: 'Lato', sans-serif;
+	background: url(../images/background.jpg) no-repeat center center fixed;
+	background-size: cover;
+	align-items: center;
+	height: 100%;
+	margin: 10px;
+}
+
+.comic {
+	text-align: center;
+}
+
+.news {
+	background-color: #eee;
+	padding: 10px;
+	border-radius: 15px;
+}
+
+.news h3 {
+	margin: 7px;
+}
+
+a {
+	color: black;
+}
+
+a:hover {
+	text-decoration: none;
+	color: darkblue;
+}
+
+.other img {
+	height: 35px;
+	width: 35px;
+}
