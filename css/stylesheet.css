@@ -9,6 +9,8 @@ body {
 
 .comic {
 	text-align: center;
+	margin-top: -15px;
+	vertical-align: middle;
 }
 
 .news {
@@ -48,4 +50,8 @@ a:hover {
 .link-menu div a img {
 	width: 48px;
 	height: 48px;
+}
+
+.link-row div {
+	margin: 5px;
 }
