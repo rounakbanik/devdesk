@@ -14,75 +14,83 @@
 	</head>
 
 	<body class='container'>
-		<div class='row utlity-menu'>
-			<div class='col-md-1'><a href="#"><img src="images/todo.png"></a></div>
-			<div class='col-md-1'><a href="#"><img src="images/notes.png"></a></div>
-			<div class='col-md-1'><a href="#" id='favorite'><img src="images/favorite.png"></a></div>
-			<div class='col-md-7'></div>
-			<div class='col-md-1'><a href="#"><img src="images/history.png"></a></div>
-			<div class='col-md-1'><a href="#"><img src="images/bookmarks.png"></a></div>
+		<div id="mySidenav" class="sidenav">
+  			<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  			<div id='content-menu'>
+  			</div>
 		</div>
-		<br>
-		<div class='row parsed'>
-			<div class='col-md-5 news'>
+
+		<div id='main'>
+			<div class='row utlity-menu'>
+				<div class='col-md-1'><a href="#"><img src="images/todo.png"></a></div>
+				<div class='col-md-1'><a href="#"><img src="images/notes.png"></a></div>
+				<div class='col-md-1'><a href="#" id='favorite' class='nav-button'><img src="images/favorite.png"></a></div>
+				<div class='col-md-7'></div>
+				<div class='col-md-1'><a href="#"><img src="images/history.png"></a></div>
+				<div class='col-md-1'><a href="#" id='bookmarks' class='nav-button'><img src="images/bookmarks.png"></a></div>
 			</div>
-			<div class='col-md-6 comic'><img src="images/loading.gif" ></div>
-		</div>
-		<div class='row link-row'>
-			<div class='col-md-5 link-menu' id='icon-menu'>
-				<div>
-					<span class='heading'>Contribute: &nbsp;</span>
-					<a href="https://github.com/"><img src="images/github.png"></a>
-					<a href="https://bitbucket.org/"><img src="images/bitbucket.png"></a>
+			<br>
+			<div class='row parsed'>
+				<div class='col-md-5 news'>
 				</div>
-				<div>
-					<span class='heading'>Ask: &nbsp;</span>
-					<a href="http://stackoverflow.com/"><img src="images/stackoverflow.png"></a>
-					<a href="https://www.quora.com/"><img src="images/quora.png"></a>
-					<a href="https://geekli.st/home"><img src="images/geeklist.ico"></a>
-				</div>
-				<div>
-					<span class='heading'>Connect: &nbsp;</span>
-					<a href="https://www.linkedin.com/"><img src="images/linkedin.png"></a>
-					<a href="https://mail.google.com"><img src="images/gmail.png"></a>
-				</div>
-				<div>
-					<span class='heading'>Fun: &nbsp;</span>
-					<a href="https://www.reddit.com/"><img src="images/reddit.png"></a>
-					<a href="https://www.facebook.com/"><img src="images/facebook.png"></a>
-					<a href="https://twitter.com/"><img src="images/twitter.png"></a>
-					<a href="https://www.instagram.com/"><img src="images/instagram.png"></a>
-					<a href="https://pinterest.com"><img src="images/pinterest.png"></a>
-					<a href="https://www.youtube.com/"><img src="images/youtube.png"></a>
-					<a href="https://www.stumbleupon.com/"><img src="images/stumbleupon.png"></a>
-				</div>
-				
+				<div class='col-md-6 comic'><img src="images/loading.gif" ></div>
 			</div>
-			<div class='col-md-3 link-menu'>
-				<h3>Online Courses</h3>
-				<ul>
-					<li><a href="https://www.udacity.com/">Udacity</a></li>
-					<li><a href="https://www.edx.org/">edX</a></li>
-					<li><a href="https://www.coursera.org/">Coursera</a></li>
-					<li><a href="https://www.khanacademy.org/welcome">Khan Academy</a></li>
-					<li><a href="http://ocw.mit.edu/index.htm">MIT OCW</a></li>
-					<li><a href="https://www.udemy.com/">Udemy</a></li>
-					<li><a href="http://online.stanford.edu/">Stanford Online</a></li>
-					<li><a href="http://tutsplus.com/">Tutsplus</a></li>
-				</ul>
-			</div>
-			<div class='col-md-3 link-menu'>
-				<h3>Practice</h3>
-				<ul>
-					<li><a href="https://www.careercup.com/">Career Cup</a></li>
-					<li><a href="https://www.hackerrank.com/">Hackerrank</a></li>
-					<li><a href="http://www.geeksforgeeks.org/">Geeksforgeeks</a></li>
-					<li><a href="https://www.codecademy.com/">Codecademy</a></li>
-					<li><a href="https://www.topcoder.com/">Topcoder</a></li>
-					<li><a href="https://www.codechef.com/">Codechef</a></li>
-					<li><a href="http://www.spoj.com/">SPOJ</a></li>
-					<li><a href="https://www.hackerearth.com/">Hackerearth</a></li>
-				</ul>
+			<div class='row link-row'>
+				<div class='col-md-5 link-menu' id='icon-menu'>
+					<div>
+						<span class='heading'>Contribute: &nbsp;</span>
+						<a href="https://github.com/"><img src="images/github.png"></a>
+						<a href="https://bitbucket.org/"><img src="images/bitbucket.png"></a>
+					</div>
+					<div>
+						<span class='heading'>Ask: &nbsp;</span>
+						<a href="http://stackoverflow.com/"><img src="images/stackoverflow.png"></a>
+						<a href="https://www.quora.com/"><img src="images/quora.png"></a>
+						<a href="https://geekli.st/home"><img src="images/geeklist.ico"></a>
+					</div>
+					<div>
+						<span class='heading'>Connect: &nbsp;</span>
+						<a href="https://www.linkedin.com/"><img src="images/linkedin.png"></a>
+						<a href="https://mail.google.com"><img src="images/gmail.png"></a>
+					</div>
+					<div>
+						<span class='heading'>Fun: &nbsp;</span>
+						<a href="https://www.reddit.com/"><img src="images/reddit.png"></a>
+						<a href="https://www.facebook.com/"><img src="images/facebook.png"></a>
+						<a href="https://twitter.com/"><img src="images/twitter.png"></a>
+						<a href="https://www.instagram.com/"><img src="images/instagram.png"></a>
+						<a href="https://pinterest.com"><img src="images/pinterest.png"></a>
+						<a href="https://www.youtube.com/"><img src="images/youtube.png"></a>
+						<a href="https://www.stumbleupon.com/"><img src="images/stumbleupon.png"></a>
+					</div>
+					
+				</div>
+				<div class='col-md-3 link-menu'>
+					<h3>Online Courses</h3>
+					<ul>
+						<li><a href="https://www.udacity.com/">Udacity</a></li>
+						<li><a href="https://www.edx.org/">edX</a></li>
+						<li><a href="https://www.coursera.org/">Coursera</a></li>
+						<li><a href="https://www.khanacademy.org/welcome">Khan Academy</a></li>
+						<li><a href="http://ocw.mit.edu/index.htm">MIT OCW</a></li>
+						<li><a href="https://www.udemy.com/">Udemy</a></li>
+						<li><a href="http://online.stanford.edu/">Stanford Online</a></li>
+						<li><a href="http://tutsplus.com/">Tutsplus</a></li>
+					</ul>
+				</div>
+				<div class='col-md-3 link-menu'>
+					<h3>Practice</h3>
+					<ul>
+						<li><a href="https://www.careercup.com/">Career Cup</a></li>
+						<li><a href="https://www.hackerrank.com/">Hackerrank</a></li>
+						<li><a href="http://www.geeksforgeeks.org/">Geeksforgeeks</a></li>
+						<li><a href="https://www.codecademy.com/">Codecademy</a></li>
+						<li><a href="https://www.topcoder.com/">Topcoder</a></li>
+						<li><a href="https://www.codechef.com/">Codechef</a></li>
+						<li><a href="http://www.spoj.com/">SPOJ</a></li>
+						<li><a href="https://www.hackerearth.com/">Hackerearth</a></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</body>
