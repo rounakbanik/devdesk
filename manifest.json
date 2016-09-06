@@ -25,6 +25,9 @@
 		"https://www.xkcd.com/info.0.json",
 		"https://news.ycombinator.com/"
 	],
+	"background": {
+		"page": "background.html"
+	},
 
 	"content_security_policy": "script-src 'self' https://xkcd.com/info.0.json https://news.ycombinator.com/; object-src 'self'"
 

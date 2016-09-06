@@ -8,6 +8,7 @@ function JSONParse(event) {
     		info_obj = jQuery.parseJSON(info);
     		img_src = info_obj[event.key];
     		$(".comic img").fadeOut(400, function() {
+    				$(".comic").css("background-color", "#fff");
             		$(this).attr('src',img_src);
             		$(".comic img").css("transform", event.scale);
         		}).fadeIn(400);
@@ -29,11 +30,11 @@ function HTMLParse(event) {
 				var link = $(this).attr("href");
 				var title = $(this).html();
 				content = content + "<li><a href='" + link + "'>" + title + "</a></li>";
-				return index < 7;
+				return index < 9;
 			});
-			content = content + "</ol><br><div class='other text-center'><a href='http://www.theverge.com/''><img src='images/verge.ico'></a>&nbsp;<a href='http://mashable.com/'><img src='images/mashable.png'></a>&nbsp;<a href='http://slashdot.org/'><img src='images/slashdot.png'></a>&nbsp;<a href='https://techcrunch.com/'><img src='images/techcrunch.ico'></a></div>";
+			content = content + "</ol><div class='other text-center'><a href='http://www.theverge.com/''><img src='images/verge.ico'></a>&nbsp;<a href='http://mashable.com/'><img src='images/mashable.png'></a>&nbsp;<a href='http://slashdot.org/'><img src='images/slashdot.png'></a>&nbsp;<a href='https://techcrunch.com/'><img src='images/techcrunch.ico'></a></div>";
 			$(".news").fadeOut(400, function() {
-				$(".news").css("background-color", "#eee");
+				$(".news").css("background-color", "#fff");
 				$(".news").append(content);
 			}).fadeIn(400);
 		}
@@ -43,12 +44,22 @@ function HTMLParse(event) {
 
 }
 
+/*chrome.runtime.sendMessage({action: 'getSource'}, function(response) {
+    console.log(response);
+});*/
+
+
+console.log("Hello");
+comic_website = {url: "https://xkcd.com/info.0.json", key: "img", scale: "scale(0.9)"};
+news_website = {url: "https://news.ycombinator.com/"};
+JSONParse(comic_website);
+HTMLParse(news_website);
+
 
 $(document).ready(function() {
-	console.log("Hello");
-	comic_website = {url: "https://xkcd.com/info.0.json", key: "img", scale: "scale(0.9)"};
-	news_website = {url: "https://news.ycombinator.com/"};
-	JSONParse(comic_website);
-	HTMLParse(news_website);
-
+	$("#favorite").click(function() {
+		chrome.runtime.sendMessage({action: 'getTopSites'}, function(response) {
+			console.log(response.source);
+		});
+	});
 });

@@ -1,6 +1,6 @@
 body {
 	font-family: 'Lato', sans-serif;
-	background: url(../images/background.jpg) no-repeat center center fixed;
+	/*background: url(../images/background.jpg) no-repeat center center fixed;*/
 	background-size: cover;
 	align-items: center;
 	height: 100%;
@@ -11,6 +11,8 @@ body {
 	text-align: center;
 	margin-top: -15px;
 	vertical-align: middle;
+	/*background-color: #eee;*/
+	border-radius: 15px;
 }
 
 .news {
@@ -20,7 +22,7 @@ body {
 }
 
 .news h3 {
-	margin: 7px;
+	margin: 13px;
 }
 
 a {
@@ -38,7 +40,7 @@ a:hover {
 }
 
 .link-menu {
-	background-color: #eee;
+	background-color: #fff;
 	border-radius: 15px;
 	padding: 15px;
 }
@@ -54,4 +56,12 @@ a:hover {
 
 .link-row div {
 	margin: 5px;
+}
+
+#icon-menu {
+	padding: 19px;
+}
+
+.parsed div {
+	margin: 9px;
 }
