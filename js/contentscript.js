@@ -3,7 +3,6 @@ function JSONParse(event) {
 	xhr.open("GET", event.url, true);
 	xhr.onreadystatechange = function() {
   		if (xhr.readyState == 4) {
-    			// innerText does not let the attacker inject HTML elements.
     		info = xhr.responseText;
     		info_obj = jQuery.parseJSON(info);
     		img_src = info_obj[event.key];
@@ -44,12 +43,6 @@ function HTMLParse(event) {
 
 }
 
-/*chrome.runtime.sendMessage({action: 'getSource'}, function(response) {
-    console.log(response);
-});*/
-
-
-console.log("Hello");
 comic_website = {url: "https://xkcd.com/info.0.json", key: "img", scale: "scale(0.9)"};
 news_website = {url: "https://news.ycombinator.com/"};
 JSONParse(comic_website);
