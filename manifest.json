@@ -20,6 +20,7 @@
 	"permissions": [
 		"topSites",
 		"tabs",
+		"bookmarks",
 		"activeTab",
 		"<all_urls>",
 		"https://www.xkcd.com/info.0.json",

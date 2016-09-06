@@ -6,6 +6,13 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     	});
     }
 
+    if(request.action === 'getBookmarks') {
+    	chrome.bookmarks.getRecent(25, function(data) {
+    		console.log(data);
+    		sendResponse({source: data});
+    	})
+    }
+
     return true;
 });
 

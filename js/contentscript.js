@@ -59,12 +59,25 @@ HTMLParse(news_website);
 $(document).ready(function() {
 	$("#favorite").click(function() {
 		chrome.runtime.sendMessage({action: 'getTopSites'}, function(response) {
-			console.log(response.source);
 			urls = response.source;
 			document.getElementById("content-menu").innerHTML = "";
 			html = "<h4>Most Visited</h4><hr><ol>";
 			for(i =0; i<urls.length; i++) {
-				html = html + "<li><a href='" + urls[i].url + "'>" + urls[i].title + "</a></li>"
+				html = html + "<li><a href='" + urls[i].url + "'>" + urls[i].title + "</a></li>";
+			}
+			html = html + "</ol>";
+			$('#content-menu').append(html);
+		});
+	});
+
+	$("#bookmarks").click(function() {
+		chrome.runtime.sendMessage({action: 'getBookmarks'}, function(response) {
+			urls = response.source;
+			console.log(response);
+			document.getElementById("content-menu").innerHTML = "";
+			html = "<h4>Recent Bookmarks</h4><hr><ol>";
+			for(i=0; i<urls.length; i++) {
+				html = html + "<li><a href='" + urls[i].url + "'>" + urls[i].title + "</a></li>";
 			}
 			html = html + "</ol>";
 			$('#content-menu').append(html);
