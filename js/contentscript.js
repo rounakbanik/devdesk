@@ -45,12 +45,10 @@ function HTMLParse(event) {
 
 function AddChecker() {
 	$('input[type=checkbox]').click(function() {
-		console.log("checker");
 		checkbox_stat = $(this);
 		link = $(this).parent().children('span');
 		chrome.storage.sync.get(["list_items", "checker"], function(data) {
 			ele = link.html();
-			console.log(ele);
 			array = data.list_items;
 			checker_array = data.checker;
 			index = array.indexOf(ele);
@@ -60,10 +58,26 @@ function AddChecker() {
 			else {
 				checker_array[index] = "";
 			}
-			console.log(checker_array);
 			chrome.storage.sync.set({"checker": checker_array}, function() {});
 		});
 
+	});
+}
+
+function DeleteItem() {
+	$('.delete-item').click(function() {
+		link = $(this);
+		chrome.storage.sync.get(["list_items", "checker"], function(data) {
+			popped = link.parent().children('label').children('span').html();
+			array = data.list_items;
+			checker_array = data.checker;
+			index = array.indexOf(popped);
+			array.splice(index, 1);
+			checker_array.splice(index, 1);
+			chrome.storage.sync.set({"list_items": array}, function() {});
+			chrome.storage.sync.set({"checker": checker_array}, function() {});
+		});
+		$(this).parent().remove();
 	});
 }
 
@@ -113,22 +127,7 @@ $(document).ready(function() {
 			}
 			$('#todo-list').append(storage_item_html);
 
-			$('.delete-item').click(function() {
-				link = $(this);
-				chrome.storage.sync.get(["list_items", "checker"], function(data) {
-					console.log("Anadar2");
-					popped = link.parent().children('label').children('span').html();
-					array = data.list_items;
-					checker_array = data.checker;
-					index = array.indexOf(popped);
-					array.splice(index, 1);
-					checker_array.splice(index, 1);
-					chrome.storage.sync.set({"list_items": array}, function() {});
-					chrome.storage.sync.set({"checker": checker_array}, function() {});
-				});
-				$(this).parent().remove();
-			});
-
+			DeleteItem();
 			AddChecker();
 
 		});
@@ -159,41 +158,11 @@ $(document).ready(function() {
 				$('#todo-list').append(item);
 			}
 
-			$('.delete-item').click(function() {
-				link = $(this);
-				chrome.storage.sync.get(["list_items", "checker"], function(data) {
-					console.log("Anadar2");
-					popped = link.parent().children('label').children('span').html();
-					array = data.list_items;
-					checker_array = data.checker;
-					index = array.indexOf(popped);
-					array.splice(index, 1);
-					checker_array.splice(index, 1);
-					chrome.storage.sync.set({"list_items": array}, function() {});
-					chrome.storage.sync.set({"checker": checker_array}, function() {});
-				});
-				$(this).parent().remove();
-			});
-
+			DeleteItem();
 			AddChecker();
 		});
 
-		$('.delete-item').click(function() {
-			link = $(this);
-			chrome.storage.sync.get(["list_items", "checker"], function(data) {
-				console.log("Anadar2");
-				popped = link.parent().children('label').children('span').html();
-				array = data.list_items;
-				checker_array = data.checker;
-				index = array.indexOf(popped);
-				array.splice(index, 1);
-				checker_array.splice(index, 1);
-				chrome.storage.sync.set({"list_items": array}, function() {});
-				chrome.storage.sync.set({"checker": checker_array}, function() {});
-			});
-			$(this).parent().remove();
-		});
-
+		DeleteItem();
 		AddChecker();
 
 
