@@ -148,3 +148,13 @@ a:hover {
 .search {
 	margin-top: 10px;
 }
+
+#todo-list {
+	font-size: 15px;
+	color: #ddd;
+	list-style: none;
+}
+
+input[type=checkbox]:checked + span {
+	text-decoration: line-through;
+}

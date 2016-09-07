@@ -49,6 +49,8 @@ JSONParse(comic_website);
 HTMLParse(news_website);
 
 
+
+
 $(document).ready(function() {
 	$("#favorite").click(function() {
 		chrome.runtime.sendMessage({action: 'getTopSites'}, function(response) {
@@ -66,7 +68,6 @@ $(document).ready(function() {
 	$("#bookmarks").click(function() {
 		chrome.runtime.sendMessage({action: 'getBookmarks'}, function(response) {
 			urls = response.source;
-			console.log(response);
 			document.getElementById("content-menu").innerHTML = "";
 			html = "<h4>Recent Bookmarks</h4><hr><ol>";
 			for(i=0; i<urls.length; i++) {
@@ -76,6 +77,34 @@ $(document).ready(function() {
 			$('#content-menu').append(html);
 		});
 	});
+
+	$('#todo').click(function() {
+		document.getElementById("content-menu").innerHTML = "";
+		html = "<input type='text' class='form-control' placeholder='Add New Task' id='todo-box'><br><br><ul id='todo-list'></ul>";
+		$('#content-menu').append(html);
+		$('#todo-box').focus();
+
+		$('#todo-box').on('keypress', function(e) {
+			if(e.which === 13) {
+				item = "<li><label><input type='checkbox' value=''>&nbsp;&nbsp;&nbsp;<span>" + $('#todo-box').val() + "</span></label><a href='#' class='delete-item' style='display: inline;'>&times;</a></li>";
+				$('#todo-box').val('');
+				$('#todo-list').append(item);
+			}
+
+			$('.delete-item').click(function() {
+				console.log("Clicked");
+				$(this).parent().remove();
+			});
+		});
+
+		$('.delete-item').click(function() {
+			console.log("Clicked");
+			$(this).parent().remove();
+		});
+
+
+	});
+
 
 	$('#search-box').on('keypress', function(e) {
 		if(e.which === 13) {
