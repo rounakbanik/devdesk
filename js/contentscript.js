@@ -43,6 +43,30 @@ function HTMLParse(event) {
 
 }
 
+function AddChecker() {
+	$('input[type=checkbox]').click(function() {
+		console.log("checker");
+		checkbox_stat = $(this);
+		link = $(this).parent().children('span');
+		chrome.storage.sync.get(["list_items", "checker"], function(data) {
+			ele = link.html();
+			console.log(ele);
+			array = data.list_items;
+			checker_array = data.checker;
+			index = array.indexOf(ele);
+			if(checkbox_stat.is(':checked')) {
+				checker_array[index] = "checked";
+			}
+			else {
+				checker_array[index] = "";
+			}
+			console.log(checker_array);
+			chrome.storage.sync.set({"checker": checker_array}, function() {});
+		});
+
+	});
+}
+
 comic_website = {url: "https://xkcd.com/info.0.json", key: "img", scale: "scale(0.9)"};
 news_website = {url: "https://news.ycombinator.com/"};
 JSONParse(comic_website);
@@ -82,81 +106,95 @@ $(document).ready(function() {
 		document.getElementById("content-menu").innerHTML = "";
 		html = "<input type='text' class='form-control' placeholder='Add New Task' id='todo-box'><br><br><ul id='todo-list'></ul>";
 		$('#content-menu').append(html);
-		chrome.storage.sync.get("list_items", function(data) {
+		chrome.storage.sync.get(["list_items", "checker"], function(data) {
 			storage_item_html = "";
 			for(ite in data.list_items) {
-				storage_item_html = storage_item_html + "<li><label><span>" + data.list_items[ite] + "</span></label><a href='#' class='delete-item' style='display:inline;'>&times;</a></li>";
+				storage_item_html = storage_item_html + "<li><label><input type='checkbox' value=''" + data.checker[ite] + ">&nbsp;&nbsp;<span>" + data.list_items[ite] + "</span></label><a href='#' class='delete-item' style='display:inline;'>&times;</a></li>";
 			}
 			$('#todo-list').append(storage_item_html);
 
 			$('.delete-item').click(function() {
 				link = $(this);
-				chrome.storage.sync.get("list_items", function(data) {
+				chrome.storage.sync.get(["list_items", "checker"], function(data) {
 					console.log("Anadar2");
 					popped = link.parent().children('label').children('span').html();
 					array = data.list_items;
+					checker_array = data.checker;
 					index = array.indexOf(popped);
 					array.splice(index, 1);
+					checker_array.splice(index, 1);
 					chrome.storage.sync.set({"list_items": array}, function() {});
+					chrome.storage.sync.set({"checker": checker_array}, function() {});
 				});
 				$(this).parent().remove();
 			});
+
+			AddChecker();
 
 		});
 		$('#todo-box').focus();
 
 		$('#todo-box').on('keypress', function(e) {
 			if(e.which === 13 && $('#todo-box').val() !== '') {
-				item = "<li><label><span>" + $('#todo-box').val() + "</span></label><a href='#' class='delete-item' style='display: inline;'>&times;</a></li>";
+				item = "<li><label><input type='checkbox' value=''>&nbsp;&nbsp;<span>" + $('#todo-box').val() + "</span></label><a href='#' class='delete-item' style='display: inline;'>&times;</a></li>";
 				value_item = $('#todo-box').val();
-				chrome.storage.sync.get("list_items", function(data) {
+				chrome.storage.sync.get(["list_items", "checker"], function(data) {
 					if(jQuery.isEmptyObject(data)) {
 						value_item = [value_item];
-						chrome.storage.sync.set({"list_items": value_item }, function() {
-          					// Notify that we saved.
-          					//console.log('Settings saved');
-        				});
+						checker_array = [""]
+						chrome.storage.sync.set({"list_items": value_item }, function() {});
+						chrome.storage.sync.set({"checker": checker_array}, function() {});
 					}
 					else {
 						data.list_items.push(value_item);
+						data.checker.push("");
 						value_item = data.list_items;
-						chrome.storage.sync.set({"list_items": value_item }, function() {
-          					// Notify that we saved.
-          					//console.log('Settings saved');
-        				});
+						checker_array = data.checker;
+						chrome.storage.sync.set({"list_items": value_item }, function() {});
+						chrome.storage.sync.set({"checker": checker_array}, function() {});
         			}
 
-				})
+				});
 				$('#todo-box').val('');
 				$('#todo-list').append(item);
 			}
 
 			$('.delete-item').click(function() {
 				link = $(this);
-				chrome.storage.sync.get("list_items", function(data) {
-					console.log("Andar");
+				chrome.storage.sync.get(["list_items", "checker"], function(data) {
+					console.log("Anadar2");
 					popped = link.parent().children('label').children('span').html();
 					array = data.list_items;
+					checker_array = data.checker;
 					index = array.indexOf(popped);
 					array.splice(index, 1);
+					checker_array.splice(index, 1);
 					chrome.storage.sync.set({"list_items": array}, function() {});
+					chrome.storage.sync.set({"checker": checker_array}, function() {});
 				});
 				$(this).parent().remove();
 			});
+
+			AddChecker();
 		});
 
 		$('.delete-item').click(function() {
 			link = $(this);
-			chrome.storage.sync.get("list_items", function(data) {
+			chrome.storage.sync.get(["list_items", "checker"], function(data) {
 				console.log("Anadar2");
 				popped = link.parent().children('label').children('span').html();
 				array = data.list_items;
+				checker_array = data.checker;
 				index = array.indexOf(popped);
 				array.splice(index, 1);
+				checker_array.splice(index, 1);
 				chrome.storage.sync.set({"list_items": array}, function() {});
+				chrome.storage.sync.set({"checker": checker_array}, function() {});
 			});
 			$(this).parent().remove();
 		});
+
+		AddChecker();
 
 
 	});

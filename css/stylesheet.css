@@ -57,7 +57,7 @@ body {
 
 .comic {
 	text-align: center;
-	margin-top: -15px;
+	margin-top: -5px;
 	vertical-align: middle;
 	/*background-color: #eee;*/
 	border-radius: 15px;
@@ -150,8 +150,9 @@ a:hover {
 }
 
 #todo-list {
-	font-size: 15px;
+	font-size: 13px;
 	color: #ddd;
+	list-style: none;
 }
 
 input[type=checkbox]:checked + span {
