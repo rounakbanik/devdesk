@@ -76,4 +76,11 @@ $(document).ready(function() {
 			$('#content-menu').append(html);
 		});
 	});
+
+	$('#search-box').on('keypress', function(e) {
+		if(e.which === 13) {
+			window.location.href = "https://duckduckgo.com/?q=" + $('#search-box').val();
+		}
+	});
+
 });
