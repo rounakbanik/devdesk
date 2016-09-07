@@ -161,6 +161,24 @@ $(document).ready(function() {
 
 	});
 
+	$('#quotes').click(function() {
+		document.getElementById("content-menu").innerHTML = "";
+		var xhr = new XMLHttpRequest();
+		xhr.open("GET", "http://quotes.rest/qod.json", true);
+		xhr.onreadystatechange = function() {
+			if(xhr.readyState == 4) {
+				info = xhr.responseText;
+				console.log(info);
+				info_obj = jQuery.parseJSON(info);
+				quote = info_obj["contents"]["quotes"][0]["quote"];
+				author = info_obj["contents"]["quotes"][0]["author"];
+				html = "<br><br><br><blockquote class='quote'>" + quote + "</blockquote><blockquote>" + author + "</blockquote>";
+				$("#content-menu").append(html);
+			}
+		}
+		xhr.send();
+	});
+
 
 	$('#search-box').on('keypress', function(e) {
 		if(e.which === 13) {

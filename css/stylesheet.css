@@ -157,3 +157,11 @@ a:hover {
 input[type=checkbox]:checked + span {
 	text-decoration: line-through;
 }
+
+blockquote.quote {
+	font-style: italic;
+}
+
+blockquote {
+	color: #ddd;
+}
