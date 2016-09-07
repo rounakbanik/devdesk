@@ -152,7 +152,6 @@ a:hover {
 #todo-list {
 	font-size: 15px;
 	color: #ddd;
-	list-style: none;
 }
 
 input[type=checkbox]:checked + span {

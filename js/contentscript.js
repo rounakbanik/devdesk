@@ -82,18 +82,39 @@ $(document).ready(function() {
 		document.getElementById("content-menu").innerHTML = "";
 		html = "<input type='text' class='form-control' placeholder='Add New Task' id='todo-box'><br><br><ul id='todo-list'></ul>";
 		$('#content-menu').append(html);
+		chrome.storage.sync.get("list_items", function(data) {
+			storage_item_html = "";
+			for(ite in data.list_items) {
+				storage_item_html = storage_item_html + "<li><label><span>" + data.list_items[ite] + "</span></label><a href='#' class='delete-item' style='display:inline;'>&times;</a></li>";
+			}
+			$('#todo-list').append(storage_item_html);
+
+			$('.delete-item').click(function() {
+				link = $(this);
+				chrome.storage.sync.get("list_items", function(data) {
+					console.log("Anadar2");
+					popped = link.parent().children('label').children('span').html();
+					array = data.list_items;
+					index = array.indexOf(popped);
+					array.splice(index, 1);
+					chrome.storage.sync.set({"list_items": array}, function() {});
+				});
+				$(this).parent().remove();
+			});
+
+		});
 		$('#todo-box').focus();
 
 		$('#todo-box').on('keypress', function(e) {
 			if(e.which === 13 && $('#todo-box').val() !== '') {
-				item = "<li><label><input type='checkbox' value=''>&nbsp;&nbsp;&nbsp;<span>" + $('#todo-box').val() + "</span></label><a href='#' class='delete-item' style='display: inline;'>&times;</a></li>";
+				item = "<li><label><span>" + $('#todo-box').val() + "</span></label><a href='#' class='delete-item' style='display: inline;'>&times;</a></li>";
 				value_item = $('#todo-box').val();
 				chrome.storage.sync.get("list_items", function(data) {
 					if(jQuery.isEmptyObject(data)) {
 						value_item = [value_item];
 						chrome.storage.sync.set({"list_items": value_item }, function() {
           					// Notify that we saved.
-          					console.log('Settings saved');
+          					//console.log('Settings saved');
         				});
 					}
 					else {
@@ -101,7 +122,7 @@ $(document).ready(function() {
 						value_item = data.list_items;
 						chrome.storage.sync.set({"list_items": value_item }, function() {
           					// Notify that we saved.
-          					console.log('Settings saved');
+          					//console.log('Settings saved');
         				});
         			}
 
@@ -111,11 +132,29 @@ $(document).ready(function() {
 			}
 
 			$('.delete-item').click(function() {
+				link = $(this);
+				chrome.storage.sync.get("list_items", function(data) {
+					console.log("Andar");
+					popped = link.parent().children('label').children('span').html();
+					array = data.list_items;
+					index = array.indexOf(popped);
+					array.splice(index, 1);
+					chrome.storage.sync.set({"list_items": array}, function() {});
+				});
 				$(this).parent().remove();
 			});
 		});
 
 		$('.delete-item').click(function() {
+			link = $(this);
+			chrome.storage.sync.get("list_items", function(data) {
+				console.log("Anadar2");
+				popped = link.parent().children('label').children('span').html();
+				array = data.list_items;
+				index = array.indexOf(popped);
+				array.splice(index, 1);
+				chrome.storage.sync.set({"list_items": array}, function() {});
+			});
 			$(this).parent().remove();
 		});
 
