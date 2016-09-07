@@ -21,6 +21,7 @@
 		"topSites",
 		"tabs",
 		"bookmarks",
+		"storage",
 		"activeTab",
 		"<all_urls>",
 		"https://www.xkcd.com/info.0.json",

@@ -85,20 +85,37 @@ $(document).ready(function() {
 		$('#todo-box').focus();
 
 		$('#todo-box').on('keypress', function(e) {
-			if(e.which === 13) {
+			if(e.which === 13 && $('#todo-box').val() !== '') {
 				item = "<li><label><input type='checkbox' value=''>&nbsp;&nbsp;&nbsp;<span>" + $('#todo-box').val() + "</span></label><a href='#' class='delete-item' style='display: inline;'>&times;</a></li>";
+				value_item = $('#todo-box').val();
+				chrome.storage.sync.get("list_items", function(data) {
+					if(jQuery.isEmptyObject(data)) {
+						value_item = [value_item];
+						chrome.storage.sync.set({"list_items": value_item }, function() {
+          					// Notify that we saved.
+          					console.log('Settings saved');
+        				});
+					}
+					else {
+						data.list_items.push(value_item);
+						value_item = data.list_items;
+						chrome.storage.sync.set({"list_items": value_item }, function() {
+          					// Notify that we saved.
+          					console.log('Settings saved');
+        				});
+        			}
+
+				})
 				$('#todo-box').val('');
 				$('#todo-list').append(item);
 			}
 
 			$('.delete-item').click(function() {
-				console.log("Clicked");
 				$(this).parent().remove();
 			});
 		});
 
 		$('.delete-item').click(function() {
-			console.log("Clicked");
 			$(this).parent().remove();
 		});
 
