@@ -74,8 +74,7 @@ function DeleteItem() {
 			index = array.indexOf(popped);
 			array.splice(index, 1);
 			checker_array.splice(index, 1);
-			chrome.storage.sync.set({"list_items": array}, function() {});
-			chrome.storage.sync.set({"checker": checker_array}, function() {});
+			chrome.storage.sync.set({"list_items": array, "checker": checker_array}, function() {});
 		});
 		$(this).parent().remove();
 	});
@@ -141,16 +140,14 @@ $(document).ready(function() {
 					if(jQuery.isEmptyObject(data)) {
 						value_item = [value_item];
 						checker_array = [""]
-						chrome.storage.sync.set({"list_items": value_item }, function() {});
-						chrome.storage.sync.set({"checker": checker_array}, function() {});
+						chrome.storage.sync.set({"list_items": value_item, "checker": checker_array }, function() {});
 					}
 					else {
 						data.list_items.push(value_item);
 						data.checker.push("");
 						value_item = data.list_items;
 						checker_array = data.checker;
-						chrome.storage.sync.set({"list_items": value_item }, function() {});
-						chrome.storage.sync.set({"checker": checker_array}, function() {});
+						chrome.storage.sync.set({"list_items": value_item, "checker": checker_array }, function() {});
         			}
 
 				});
