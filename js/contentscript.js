@@ -16,6 +16,24 @@ function JSONParse(event) {
 	xhr.send();
 }
 
+function RandomParse(event) {
+	var xhr = new XMLHttpRequest();
+	xhr.open("GET", event.url, true);
+	xhr.onreadystatechange = function() {
+		if (xhr.readyState == 4) {
+			info = xhr.responseText;
+			info_obj = jQuery.parseHTML(info);
+			img_src = event.prestr + $(info_obj).find(event.key).attr("src")
+			$(".comic img").fadeOut(400, function() {
+    				$(".comic").css("background-color", "#fff");
+            		$(this).attr('src',img_src);
+            		$(".comic img").css("transform", event.scale);
+        	}).fadeIn(400);
+		}
+	}
+	xhr.send()
+}
+
 function HTMLParse(event) {
 	var xhr = new XMLHttpRequest();
 	xhr.open("GET", event.url, true);
@@ -80,9 +98,11 @@ function DeleteItem() {
 	});
 }
 
-comic_website = {url: "https://xkcd.com/info.0.json", key: "img", scale: "scale(0.9)"};
+//comic_website = {url: "https://xkcd.com/info.0.json", key: "img", scale: "scale(0.9)"};
+comic_website = {url: "http://c.xkcd.com/random/comic/", key: "#comic img", scale: "scale(0.9)", prestr: "http:"};
 news_website = {url: "https://news.ycombinator.com/"};
-JSONParse(comic_website);
+//JSONParse(comic_website);
+RandomParse(comic_website);
 HTMLParse(news_website);
 
 
