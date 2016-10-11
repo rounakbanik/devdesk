@@ -7,7 +7,7 @@
 
 <p>This project is open sourced. Feel free to fork the repository and customize it according to your needs. I am
 also currently accepting pull requests that revamp the design of the app and add new functionality and features. Also,
-if you experience any bugs, errors or difficulties using the app, feel free to contact me on <a href="https://www.facebook.com/rounak.banik">Facebook</a> or mail you suggestions to <a href="mailto:rounakbanik@gmail.com">rounakbanik@gmail.com</a></p>
+if you experience any bugs, errors or difficulties using the app, feel free to contact me on <a href="https://www.facebook.com/rounak.banik">Facebook</a> or mail your suggestions to <a href="mailto:rounakbanik@gmail.com">rounakbanik@gmail.com</a></p>
 
 <h2>Features</h2>
 
